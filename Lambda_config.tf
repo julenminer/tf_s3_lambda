@@ -44,3 +44,18 @@ resource "aws_iam_role" "role_for_lambda" {
 }
 EOF
 }
+
+resource "aws_lambda_function" "image_resizer_lambda" {
+  function_name = "image_resizer_lambda"
+  role          = aws_iam_role.role_for_lambda.arn
+  handler       = "example.Handler::handleRequest"
+  filename      = "s3-java/target/s3-java-1.0-SNAPSHOT.jar"
+  timeout       = 60
+  runtime       = "java11"
+  environment {
+    variables = {
+      ENV_MAX_WIDTH = "200",
+      ENV_MAX_HEIGHT = "200"
+    }
+  }
+}
