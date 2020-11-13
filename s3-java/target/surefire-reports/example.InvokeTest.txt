@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: example.InvokeTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.977 s <<< FAILURE! - in example.InvokeTest
+invokeTest  Time elapsed: 0.033 s  <<< ERROR!
+java.nio.file.NoSuchFileException: bucket-name.txt
+	at example.InvokeTest.invokeTest(InvokeTest.java:48)
+
