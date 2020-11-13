@@ -52,6 +52,7 @@ resource "aws_lambda_function" "image_resizer_lambda" {
   filename      = "s3-java/target/s3-java-1.0-SNAPSHOT.jar"
   timeout       = 60
   runtime       = "java11"
+  memory_size   = 1024
   environment {
     variables = {
       ENV_MAX_WIDTH = "200",
@@ -84,7 +85,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 # If skipping this resource configuration, also add "logs:CreateLogGroup" to the IAM policy below.
 resource "aws_cloudwatch_log_group" "log_group" {
   name              = "/aws/lambda/${aws_lambda_function.image_resizer_lambda.function_name}"
-  retention_in_days = 2
+  retention_in_days = 1
 }
 
 # See also the following AWS managed policy: AWSLambdaBasicExecutionRole
